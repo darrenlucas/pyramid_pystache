@@ -1,15 +1,15 @@
-.. _pyramid_mustache_api:
+.. _pyramid_pystache_api:
 
-:mod:`pyramid_mustache` API
+:mod:`pyramid_pystache` API
 ----------------------------
 
-.. automodule:: pyramid_mustache
+.. automodule:: pyramid_pystache
 .. autofunction:: includeme
 
 
-.. automodule:: pyramid_mustache.interfaces
+.. automodule:: pyramid_pystache.interfaces
 .. autointerface:: IMustacheLookup
 
-.. automodule:: pyramid_mustache.renderer
+.. automodule:: pyramid_pystache.renderer
 
 

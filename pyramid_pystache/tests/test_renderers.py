@@ -11,11 +11,11 @@ class TestTemplateRendererFactory(unittest.TestCase):
         cleanUp()
 
     def _callFUT(self, info, impl):
-        from pyramid_mustache.renderer import template_renderer_factory
+        from pyramid_pystache.renderer import template_renderer_factory
         return template_renderer_factory(info, impl)
 
     def test_lookup_found(self):
-        from pyramid_mustache.interfaces import IMustacheLookup
+        from pyramid_pystache.interfaces import IMustacheLookup
         L = []
 
         def dummy(info):
@@ -34,7 +34,7 @@ class TestTemplateRendererFactory(unittest.TestCase):
         self.assertEqual(L, [info])
 
     def test_lookup_miss(self):
-        from pyramid_mustache.interfaces import ITemplateRenderer
+        from pyramid_pystache.interfaces import ITemplateRenderer
         import os
         abspath = os.path.abspath(__file__)
         renderer = {}
@@ -59,11 +59,11 @@ class TestMustacheRendererLookup(unittest.TestCase):
         testing.tearDown()
 
     def _makeOne(self, impl):
-        from pyramid_mustache.renderer import MustacheRendererLookup
+        from pyramid_pystache.renderer import MustacheRendererLookup
         return MustacheRendererLookup(impl, self.config.registry)
 
     def _registerTemplateRenderer(self, renderer, name):
-        from pyramid_mustache.interfaces import ITemplateRenderer
+        from pyramid_pystache.interfaces import ITemplateRenderer
         self.config.registry.registerUtility(
             renderer, ITemplateRenderer, name=name)
 
@@ -73,10 +73,10 @@ class TestMustacheRendererLookup(unittest.TestCase):
         self.assertEqual(result, 'foo')
 
     def test_get_spec_not_abspath_no_colon_with_package(self):
-        from pyramid_mustache import tests
+        from pyramid_pystache import tests
         lookup = self._makeOne(None)
         result = lookup.get_spec('foo', tests)
-        self.assertEqual(result, 'pyramid_mustache.tests:foo')
+        self.assertEqual(result, 'pyramid_pystache.tests:foo')
 
     def test_get_spec_not_abspath_with_colon_no_package(self):
         lookup = self._makeOne(None)
@@ -84,7 +84,7 @@ class TestMustacheRendererLookup(unittest.TestCase):
         self.assertEqual(result, 'fudge:foo')
 
     def test_get_spec_not_abspath_with_colon_with_package(self):
-        from pyramid_mustache import tests
+        from pyramid_pystache import tests
         lookup = self._makeOne(None)
         result = lookup.get_spec('fudge:foo', tests)
         self.assertEqual(result, 'fudge:foo')
@@ -97,16 +97,16 @@ class TestMustacheRendererLookup(unittest.TestCase):
         self.assertEqual(result, spec)
 
     def test_get_spec_is_abspath_no_colon_with_path_in_package(self):
-        from pyramid_mustache import tests
+        from pyramid_pystache import tests
         import os
         lookup = self._makeOne(None)
         f = __file__
         spec = os.path.abspath(f)
         result = lookup.get_spec(spec, tests)
-        self.assertEqual(result, 'pyramid_mustache.tests:%s' % os.path.split(f)[-1])
+        self.assertEqual(result, 'pyramid_pystache.tests:%s' % os.path.split(f)[-1])
 
     def test_get_spec_is_abspath_no_colon_with_path_outside_package(self):
-        # venusian used only because it's outside of pyramid_mustache.tests
+        # venusian used only because it's outside of pyramid_pystache.tests
         import venusian
         import os
         lookup = self._makeOne(None)
@@ -123,17 +123,17 @@ class TestMustacheRendererLookup(unittest.TestCase):
         self.assertEqual(result, spec)
 
     def test_get_spec_is_abspath_with_colon_with_path_in_package(self):
-        from pyramid_mustache import tests
+        from pyramid_pystache import tests
         import os
         lookup = self._makeOne(None)
         f = os.path.abspath(__file__)
         spec = os.path.join(f, ':foo')
         result = lookup.get_spec(spec, tests)
         tail = spec.split(os.sep)[-2:]
-        self.assertEqual(result, 'pyramid_mustache.tests:%s/%s' % tuple(tail))
+        self.assertEqual(result, 'pyramid_pystache.tests:%s/%s' % tuple(tail))
 
     def test_get_spec_is_abspath_with_colon_with_path_outside_package(self):
-        # venusian used only because it's outside of pyramid_mustache.tests
+        # venusian used only because it's outside of pyramid_pystache.tests
         import venusian
         import os
         lookup = self._makeOne(None)
@@ -203,13 +203,13 @@ class TestMustacheRendererLookup(unittest.TestCase):
 
     def test___call__relpath_has_package_registered(self):
         renderer = {}
-        import pyramid_mustache.tests
+        import pyramid_pystache.tests
         spec = 'bar/baz'
         self._registerTemplateRenderer(
-            renderer, 'pyramid_mustache.tests:bar/baz')
+            renderer, 'pyramid_pystache.tests:bar/baz')
         info = DummyRendererInfo({
             'name':spec,
-            'package':pyramid_mustache.tests,
+            'package':pyramid_pystache.tests,
             'registry':self.config.registry,
             'settings':{},
             'type':'type',
@@ -219,7 +219,7 @@ class TestMustacheRendererLookup(unittest.TestCase):
         self.assertTrue(renderer is result)
 
     def test___call__spec_notfound(self):
-        spec = 'pyramid_mustache.tests:wont/exist'
+        spec = 'pyramid_pystache.tests:wont/exist'
         info = DummyRendererInfo({
             'name':spec,
             'package':None,
@@ -250,7 +250,7 @@ class TestMustacheRendererLookup(unittest.TestCase):
 
     def test___call__spec_notyetregistered(self):
         import os
-        from pyramid_mustache import tests
+        from pyramid_pystache import tests
         module_name = tests.__name__
         relpath = 'test_renderers.py'
         renderer = {}
@@ -272,9 +272,9 @@ class TestMustacheRendererLookup(unittest.TestCase):
         self.assertTrue(factory.path.startswith(path))
 
     def test___call__reload_assets_true(self):
-        import pyramid_mustache.tests
+        import pyramid_pystache.tests
         from pyramid.interfaces import ISettings
-        from pyramid_mustache.interfaces import ITemplateRenderer
+        from pyramid_pystache.interfaces import ITemplateRenderer
         settings = {'reload_assets':True}
         self.config.registry.registerUtility(settings, ISettings)
         renderer = {}
@@ -283,7 +283,7 @@ class TestMustacheRendererLookup(unittest.TestCase):
         reg = self.config.registry
         info = DummyRendererInfo({
             'name':spec,
-            'package':pyramid_mustache.tests,
+            'package':pyramid_pystache.tests,
             'registry':reg,
             'settings':settings,
             'type':'type',
@@ -291,13 +291,13 @@ class TestMustacheRendererLookup(unittest.TestCase):
         lookup = self._makeOne(factory)
         result = lookup(info)
         self.assertTrue(result is renderer)
-        spec = '%s:%s' % ('pyramid_mustache.tests', 'test_renderers.py')
+        spec = '%s:%s' % ('pyramid_pystache.tests', 'test_renderers.py')
         self.assertEqual(reg.queryUtility(ITemplateRenderer, name=spec),
                          None)
 
     def test___call__reload_assets_false(self):
-        import pyramid_mustache.tests
-        from pyramid_mustache.interfaces import ITemplateRenderer
+        import pyramid_pystache.tests
+        from pyramid_pystache.interfaces import ITemplateRenderer
         settings = {'reload_assets':False}
         renderer = {}
         factory = DummyFactory(renderer)
@@ -305,7 +305,7 @@ class TestMustacheRendererLookup(unittest.TestCase):
         reg = self.config.registry
         info = DummyRendererInfo({
             'name':spec,
-            'package':pyramid_mustache.tests,
+            'package':pyramid_pystache.tests,
             'registry':reg,
             'settings':settings,
             'type':'type',
@@ -313,7 +313,7 @@ class TestMustacheRendererLookup(unittest.TestCase):
         lookup = self._makeOne(factory)
         result = lookup(info)
         self.assertTrue(result is renderer)
-        spec = '%s:%s' % ('pyramid_mustache.tests', 'test_renderers.py')
+        spec = '%s:%s' % ('pyramid_pystache.tests', 'test_renderers.py')
         self.assertNotEqual(reg.queryUtility(ITemplateRenderer, name=spec),
                             None)
 

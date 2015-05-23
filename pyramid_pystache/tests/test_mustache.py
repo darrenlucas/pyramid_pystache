@@ -18,19 +18,19 @@ class Base(object):
 
 class Test_renderer_factory(Base, unittest.TestCase):
     def _callFUT(self, info):
-        from pyramid_mustache.mustache import renderer_factory
+        from pyramid_pystache.mustache import renderer_factory
         return renderer_factory(info)
 
     def test_it(self):
         # this test is way too functional
-        from pyramid_mustache.mustache import MustacheTemplateRenderer
+        from pyramid_pystache.mustache import MustacheTemplateRenderer
         info = DummyInfo()
         result = self._callFUT(info)
         self.assertEqual(result.__class__, MustacheTemplateRenderer)
 
 class MustacheTemplateRendererTests(Base, unittest.TestCase):
     def _getTargetClass(self):
-        from pyramid_mustache.mustache import MustacheTemplateRenderer
+        from pyramid_pystache.mustache import MustacheTemplateRenderer
         return MustacheTemplateRenderer
 
     def _makeOne(self, *arg, **kw):
@@ -39,14 +39,14 @@ class MustacheTemplateRendererTests(Base, unittest.TestCase):
 
     def test_instance_implements_ITemplateRenderer(self):
         from zope.interface.verify import verifyObject
-        from pyramid_mustache.interfaces import ITemplateRenderer
+        from pyramid_pystache.interfaces import ITemplateRenderer
         path = self._getTemplatePath('minimal.mustache')
         lookup = DummyLookup()
         verifyObject(ITemplateRenderer, self._makeOne(path, lookup))
 
     def test_class_implements_ITemplateRenderer(self):
         from zope.interface.verify import verifyClass
-        from pyramid_mustache.interfaces import ITemplateRenderer
+        from pyramid_pystache.interfaces import ITemplateRenderer
         verifyClass(ITemplateRenderer, self._getTargetClass())
 
     def test_call(self):

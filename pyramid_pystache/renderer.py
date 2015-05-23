@@ -12,7 +12,7 @@ from pyramid.path import (
     package_path
     )
 
-from pyramid_mustache.interfaces import (
+from pyramid_pystache.interfaces import (
     IMustacheLookup,
     ITemplateRenderer
     )

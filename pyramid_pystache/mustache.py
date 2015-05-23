@@ -2,8 +2,8 @@ import os
 from zope.interface import implementer
 
 from pyramid.decorator import reify
-from pyramid_mustache import renderer
-from pyramid_mustache.interfaces import ITemplateRenderer
+from pyramid_pystache import renderer
+from pyramid_pystache.interfaces import ITemplateRenderer
 
 import pystache
 

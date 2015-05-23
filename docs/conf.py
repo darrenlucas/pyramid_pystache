@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# pyramid_mustache documentation build configuration file
+# pyramid_pystache documentation build configuration file
 #
 # This file is execfile()d with the current directory set to its containing
 # dir.
@@ -82,14 +82,14 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General substitutions.
-project = 'pyramid_mustache: Mustache Bindings for the Pyramid Web Framework'
+project = 'pyramid_pystache: Mustache Bindings for the Pyramid Web Framework'
 copyright = '2011-%s, Pylons Project' % datetime.datetime.now().year
 
 # The default replacements for |version| and |release|, also used in various
 # other places throughout the built documents.
 #
 # The short X.Y version.
-version = pkg_resources.get_distribution('pyramid_mustache').version
+version = pkg_resources.get_distribution('pyramid_pystache').version
 # The full version, including alpha/beta/rc tags.
 release = version
 
@@ -137,7 +137,7 @@ html_theme = 'pyramid'
 
 
 html_theme_options = {
-    'github_url': 'https://github.com/darrenlucas/pyramid_mustache'
+    'github_url': 'https://github.com/darrenlucas/pyramid_pystache'
 }
 
 
@@ -222,7 +222,7 @@ htmlhelp_basename = 'atemplatedoc'
 # (source start file, target name, title,
 #  author, document class [howto/manual]).
 latex_documents = [
-  ('index', 'pyramid_mustache.tex', 'pyramid_mustache Documentation',
+  ('index', 'pyramid_pystache.tex', 'pyramid_pystache Documentation',
    'Repoze Developers', 'manual'),
 ]
 

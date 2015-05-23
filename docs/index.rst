@@ -1,11 +1,11 @@
 ================
-pyramid_mustache
+pyramid_pystache
 ================
 
 Overview
 ========
 
-:mod:`pyramid_mustache` is a set of bindings that make templates written for
+:mod:`pyramid_pystache` is a set of bindings that make templates written for
 the :term:`Mustache` templating system work under the Pyramid web framework.
 
 Installation
@@ -13,25 +13,25 @@ Installation
 
 Install using setuptools, e.g. (within a virtualenv)::
 
-  $ $myvenv/bin/easy_install pyramid_mustache
+  $ $myvenv/bin/easy_install pyramid_pystache
 
 Setup
 =====
 
-There are several ways to make sure that :mod:`pyramid_mustache` is active.
+There are several ways to make sure that :mod:`pyramid_pystache` is active.
 They are completely equivalent:
 
-#) Add pyramid_mustache to the `pyramid.includes` section of your applications
+#) Add pyramid_pystache to the `pyramid.includes` section of your applications
    main configuration section::
 
     [app:main]
     ...
-    pyramid.includes = pyramid_mustache
+    pyramid.includes = pyramid_pystache
 
 
 #) Use the ``includeme`` function via ``config.include``::
 
-    config.include('pyramid_mustache')
+    config.include('pyramid_pystache')
 
 Once activated, files with the ``.mustache`` extension are considered to be
 :term:`Mustache` templates.
@@ -41,7 +41,7 @@ Once activated, files with the ``.mustache`` extension are considered to be
 Using Mustache Templates
 =========================
 
-Once :mod:`pyramid_mustache` been activated ``.mustache`` templates can be
+Once :mod:`pyramid_pystache` been activated ``.mustache`` templates can be
 loaded either by looking up names that would be found on the :term:`Mustache`
 search path or by looking up an absolute asset specification (see
 :ref:`asset_specifications` for more information).
@@ -201,7 +201,7 @@ Unit Testing
 ------------
 
 When you are running unit tests, you will be required to use
-``config.include('pyramid_mustache')`` to add ``pyramid_mustache`` so that
+``config.include('pyramid_pystache')`` to add ``pyramid_pystache`` so that
 its renderers are added to the config and can be used.::
 
     from pyramid import testing
@@ -217,7 +217,7 @@ its renderers are added to the config and can be used.::
     class TestViews(unittest.TestCase):
         def setUp(self):
             self.config = testing.setUp()
-            self.config.include('pyramid_mustache')
+            self.config.include('pyramid_pystache')
 
         def tearDown(self):
             testing.tearDown()
@@ -242,10 +242,10 @@ More Information
 Reporting Bugs / Development Versions
 =====================================
 
-Visit http://github.com/darrenlucas/pyramid_mustache to download development or
+Visit http://github.com/darrenlucas/pyramid_pystache to download development or
 tagged versions.
 
-Visit http://github.com/darrenlucas/pyramid_mustache/issues to report bugs.
+Visit http://github.com/darrenlucas/pyramid_pystache/issues to report bugs.
 
 Indices and tables
 ------------------

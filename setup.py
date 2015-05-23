@@ -23,9 +23,9 @@ testing_extras = [
     'virtualenv', # for scaffolding tests
     ]
 
-setup(name='pyramid_mustache',
+setup(name='pyramid_pystache',
       version='0.1',
-      description='pyramid_mustache',
+      description='pyramid_pystache',
       long_description=README + '\n\n' + CHANGES,
       classifiers=[
         "Programming Language :: Python",
@@ -43,7 +43,7 @@ setup(name='pyramid_mustache',
         ],
       author="Darren Lucas",
       author_email="me@darrenlucas.com",
-      url="https://github.com/darrenlucas/pyramid_mustache",
+      url="https://github.com/darrenlucas/pyramid_pystache",
       license="BSD-derived (http://www.repoze.org/LICENSE.txt)",
       packages=find_packages(),
       include_package_data=True,
@@ -54,7 +54,7 @@ setup(name='pyramid_mustache',
           'testing':testing_extras,
           'docs':docs_extras,
           },
-      test_suite="pyramid_mustache",
+      test_suite="pyramid_pystache",
       entry_points="""\
       """,
       )

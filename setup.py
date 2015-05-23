@@ -25,7 +25,7 @@ testing_extras = [
 
 setup(name='pyramid_pystache',
       version='0.1',
-      description='pyramid_pystache',
+      description='Mustache template bindings using Pystache for the Pyramid web framework',
       long_description=README + '\n\n' + CHANGES,
       classifiers=[
         "Programming Language :: Python",

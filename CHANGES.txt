@@ -1,3 +1,10 @@
+0.2 (2015-05-23)
+---------------
+
+- Ensure we can build when CHANGES.txt and README.rst cannot be found by
+  setup.py.
+
+
 0.1 (2014-11-22)
 ----------------
 

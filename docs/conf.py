@@ -35,7 +35,7 @@ if 'sphinx-build' in ' '.join(sys.argv): # protect against dumb importers
     _themes = os.path.join(cwd, '_themes')
 
     if not os.path.isdir(_themes):
-        call([git, 'clone', 'git://github.com/Pylons/pylons_sphinx_theme.git',
+        call([git, 'clone', 'git://github.com/snide/sphinx_rtd_theme.git',
                 '_themes'])
     else:
         os.chdir(_themes)
@@ -82,8 +82,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General substitutions.
-project = 'pyramid_pystache: Mustache Bindings for the Pyramid Web Framework'
-copyright = '2011-%s, Pylons Project' % datetime.datetime.now().year
+project = 'Pyramid Pystache'
+copyright = '2011-%s, Darren Lucas' % datetime.datetime.now().year
 
 # The default replacements for |version| and |release|, also used in various
 # other places throughout the built documents.
@@ -106,7 +106,7 @@ today_fmt = '%B %d, %Y'
 # searched for source files.
 #exclude_dirs = []
 
-exclude_patterns = ['_themes/README.rst',]
+exclude_patterns = ['_themes/README.rst', '_themes/**/*.rst',]
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
@@ -133,12 +133,12 @@ exclude_patterns = ['_themes/README.rst',]
 # Add and use Pylons theme
 sys.path.append(os.path.abspath('_themes'))
 html_theme_path = ['_themes']
-html_theme = 'pyramid'
+html_theme = 'sphinx_rtd_theme'
 
 
-html_theme_options = {
-    'github_url': 'https://github.com/darrenlucas/pyramid_pystache'
-}
+#html_theme_options = {
+#    'github_url': 'https://github.com/darrenlucas/pyramid_pystache'
+#}
 
 
 # The style sheet to use for HTML and HTML Help pages. A file of that name

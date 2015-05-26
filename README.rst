@@ -1,11 +1,15 @@
-Mustache templating system Bindings for Pyramid
-================================================
+Mustache templates for Pyramid
+==============================
 
-Bindings for the `Mustache templating system`_ for the Pyramid_ web framework
+Bindings into Pystache_ for the Pyramid_ web framework.  Use Mustache_ logic-less
+templates in your Pyramid project.
 
-Heavily based on the pyramid_chameleon_ package
+Based upon the pyramid_chameleon_ package, so switching from chameleon should be
+easy.
 
-.. _Mustache templating system: http://mustache.github.io/
+See http://pyramid-pystache.readthedocs.org/en/latest/ for full documentation.
+
+.. _Pystache: https://github.com/defunkt/pystache
+.. _Mustache: http://mustache.github.io/
 .. _Pyramid: http://pylonsproject.org/
 .. _pyramid_chameleon: https://github.com/Pylons/pyramid_chameleon
-
